@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomasqui Project</title>
+
+<style>
+
+/* ====== ESTILO GENERAL ====== */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background: #0f0f0f;
+    color: white;
+}
+
+/* ====== INTRO ====== */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    z-index: 100;
+    cursor: pointer;
+}
+
+#intro h1 {
+    font-size: 8vw;
+    letter-spacing: 10px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8);}
+    to { opacity: 1; transform: scale(1);}
+}
+
+/* ====== MAPA ====== */
+#mapa {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    background: url('https://i.imgur.com/3ZQ3Z4B.jpeg') center/cover no-repeat;
+}
+
+/* Puntos interactivos */
+.lugar {
+    position: absolute;
+    width: 180px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lugar:hover {
+    transform: scale(1.05);
+}
+
+.lugar img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    background: white;
+}
+
+.lugar h3 {
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+}
+
+/* Posiciones ejemplo */
+#turismo { top: 30%; left: 20%; }
+#comida { top: 50%; left: 50%; }
+#artesanias { top: 40%; left: 75%; }
+
+/* ====== VISTA LUGAR ====== */
+#vistaLugar {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #111;
+    display: none;
+    flex-direction: row;
+    animation: zoomIn 0.7s ease forwards;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.columna {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.placeholder {
+    background: white;
+    color: black;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: crimson;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:768px){
+    #vistaLugar{
+        flex-direction: column;
+    }
+    .lugar{
+        width: 140px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>POMASQUI</h1>
+</div>
+
+<!-- MAPA -->
+<div id="mapa">
+
+    <div class="lugar" id="turismo" onclick="abrirLugar('Turismo')">
+        <img src="https://via.placeholder.com/300x200/ffffff/000000?text=Imagen+Turistico+1">
+        <h3>Turismo</h3>
+    </div>
+
+    <div class="lugar" id="comida" onclick="abrirLugar('Comida')">
+        <img src="https://via.placeholder.com/300x200/ffffff/000000?text=Imagen+Comida+1">
+        <h3>Comida</h3>
+    </div>
+
+    <div class="lugar" id="artesanias" onclick="abrirLugar('Artesanias')">
+        <img src="https://via.placeholder.com/300x200/ffffff/000000?text=Imagen+Artesanias+1">
+        <h3>Artesanías</h3>
+    </div>
+
+</div>
+
+<!-- VISTA LUGAR -->
+<div id="vistaLugar">
+    <div class="columna">
+        <iframe src="https://www.google.com/maps?q=Pomasqui&output=embed"></iframe>
+    </div>
+    <div class="columna">
+        <div class="placeholder" id="tituloLugar">Información del lugar</div>
+        <p>Lorem ipsum dolor sit amet, aquí irá la información real del lugar cuando la tengas.</p>
+        <button onclick="volver()">Volver al mapa</button>
+    </div>
+</div>
+
+<script>
+
+const intro = document.getElementById("intro");
+const mapa = document.getElementById("mapa");
+const vista = document.getElementById("vistaLugar");
+const tituloLugar = document.getElementById("tituloLugar");
+
+intro.addEventListener("click", () => {
+    intro.style.display = "none";
+    mapa.style.display = "block";
+});
+
+function abrirLugar(nombre){
+    mapa.style.display = "none";
+    vista.style.display = "flex";
+    tituloLugar.innerText = nombre;
+}
+
+function volver(){
+    vista.style.display = "none";
+    mapa.style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
