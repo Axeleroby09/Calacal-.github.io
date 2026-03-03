@@ -3,234 +3,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calacalí Experience PRO</title>
+<title>Pomasqui</title>
 
 <style>
-*{box-sizing:border-box;}
+
+/* =====================
+   RESET
+===================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#0f0f0f;
-color:white;
-overflow:hidden;
+    background:#0f0f0f;
+    color:white;
+    overflow-x:hidden;
 }
 
-/* INTRO */
+/* =====================
+   PANTALLA INICIAL
+===================== */
 #intro{
-position:fixed;
-width:100%;
-height:100vh;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-cursor:pointer;
-z-index:100;
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+    cursor:pointer;
 }
+
 #intro h1{
-font-size:8vw;
-letter-spacing:10px;
-animation:fade 2s ease;
-}
-@keyframes fade{
-from{opacity:0;transform:scale(0.8);}
-to{opacity:1;transform:scale(1);}
+    font-size:8vw;
+    letter-spacing:10px;
+    transition:0.5s;
 }
 
-/* MAPA LISTA */
-#mapa{
-display:none;
-height:100vh;
-overflow:auto;
-padding:40px;
-background:#111;
+#intro:hover h1{
+    transform:scale(1.1);
+    color:#e50914;
 }
 
-.card{
-background:#1e1e1e;
-padding:20px;
-margin:15px 0;
-border-radius:12px;
-cursor:pointer;
-transition:0.3s;
-}
-.card:hover{
-background:#292929;
-transform:translateY(-4px);
+/* =====================
+   MAPA PRINCIPAL
+===================== */
+#mapaPrincipal{
+    display:none;
+    padding:60px 5%;
 }
 
-/* VISTA PRO */
-#vista{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-display:none;
-flex-direction:column;
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+#mapaPrincipal h2{
+    margin-bottom:30px;
+    font-size:28px;
 }
 
-.overlay{
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(6px);
-width:100%;
-height:100%;
-display:flex;
-flex-direction:column;
+.lugares-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
 
-.topbar{
-display:flex;
-justify-content:center;
-gap:20px;
-padding:20px;
+.lugar-card{
+    background:#1a1a1a;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.6);
 }
 
-.tab{
-padding:12px 30px;
-border-radius:30px;
-background:#222;
-cursor:pointer;
-transition:0.3s;
-font-weight:bold;
+.lugar-card:hover{
+    transform:translateY(-8px);
 }
 
-.tab.active{
-background:crimson;
+.lugar-img{
+    background:white;
+    height:180px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:black;
+    font-weight:bold;
+    text-align:center;
+    padding:10px;
 }
 
-.content{
-flex:1;
-padding:20px;
-display:flex;
-justify-content:center;
-align-items:center;
+.lugar-info{
+    padding:20px;
 }
 
-.content iframe{
-width:90%;
-height:90%;
-border-radius:15px;
-border:none;
-box-shadow:0 0 25px rgba(0,0,0,0.8);
+/* =====================
+   DETALLE LUGAR
+===================== */
+.detalle-lugar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:#0f0f0f;
+    padding:40px 5%;
+    display:none;
+    z-index:2000;
 }
 
-.volver{
-position:absolute;
-top:20px;
-right:30px;
-background:crimson;
-border:none;
-padding:10px 18px;
-border-radius:6px;
-cursor:pointer;
-font-weight:bold;
+.btn-volver{
+    background:#e50914;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    margin-bottom:20px;
 }
 
-@media(max-width:768px){
-.content iframe{
-width:100%;
-height:80%;
+.detalle-container{
+    display:flex;
+    gap:30px;
+    height:75vh;
 }
+
+.panel{
+    flex:1;
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    padding:20px;
 }
+
+.mapa-panel iframe{
+    width:100%;
+    height:100%;
+    border:none;
+    border-radius:10px;
+}
+
+.info-panel h2{
+    margin-bottom:15px;
+}
+
+.info-box{
+    margin-top:20px;
+    background:#1f1f1f;
+    padding:15px;
+    border-radius:10px;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media(max-width:900px){
+    .detalle-container{
+        flex-direction:column;
+        height:auto;
+    }
+    .panel{
+        height:400px;
+    }
+}
+
 </style>
 </head>
-
 <body>
 
-<div id="intro">
-<h1>CALACALÍ</h1>
+<!-- =====================
+     INTRO
+===================== -->
+<div id="intro" onclick="entrarMapa()">
+    <h1>POMASQUI</h1>
 </div>
 
-<div id="mapa">
+<!-- =====================
+     MAPA PRINCIPAL
+===================== -->
+<section id="mapaPrincipal">
+    <h2>Selecciona un lugar</h2>
 
-<h2>Selecciona un lugar</h2>
+    <div class="lugares-grid">
 
-<div class="card" onclick="abrirLugar(
-'Museo Casa Carlota Jaramillo',
-'https://maps.google.com/?q=Museo+Casa+Carlota+Jaramillo+Calacalí&output=embed',
-'https://www.facebook.com/CasaCarlotaJaramillo/',
-'https://upload.wikimedia.org/wikipedia/commons/6/6b/Exterior_Casa_Museo_Carlota_Jaramillo.jpg'
-)">
-Museo Casa Carlota Jaramillo
-</div>
+        <!-- EJEMPLO 1 -->
+        <div class="lugar-card" onclick="abrirLugar(
+            'Lugar Turístico Ejemplo',
+            'Descripción de ejemplo lista para reemplazar por información real.',
+            -0.0022,
+            -78.4300
+        )">
+            <div class="lugar-img">
+                Imagen Turistico 1
+            </div>
+            <div class="lugar-info">
+                <h3>Lugar Turístico Ejemplo</h3>
+                <p>Turismo</p>
+            </div>
+        </div>
 
-<div class="card" onclick="abrirLugar(
-'Monumento Mitad del Mundo',
-'https://maps.google.com/?q=Monumento+Mitad+del+Mundo+Calacalí&output=embed',
-'https://www.instagram.com/explore/locations/236311290/monumento-a-la-mitad-del-mundo-calacalali/',
-'https://upload.wikimedia.org/wikipedia/commons/0/05/Mitad_del_Mundo%2C_Quito%2C_Ecuador%2C_2015-07-22%2C_DD_15.JPG'
-)">
-Monumento Mitad del Mundo
-</div>
+        <!-- EJEMPLO 2 -->
+        <div class="lugar-card" onclick="abrirLugar(
+            'Restaurante Ejemplo',
+            'Información del restaurante de ejemplo.',
+            -0.0102,
+            -78.4230
+        )">
+            <div class="lugar-img">
+                Imagen Comida 1
+            </div>
+            <div class="lugar-info">
+                <h3>Restaurante Ejemplo</h3>
+                <p>Comida</p>
+            </div>
+        </div>
 
-</div>
+        <!-- EJEMPLO 3 -->
+        <div class="lugar-card" onclick="abrirLugar(
+            'Artesanía Ejemplo',
+            'Descripción de artesanías lista para editar.',
+            -0.0150,
+            -78.4350
+        )">
+            <div class="lugar-img">
+                Imagen Artesanía 1
+            </div>
+            <div class="lugar-info">
+                <h3>Artesanía Ejemplo</h3>
+                <p>Artesanía</p>
+            </div>
+        </div>
 
-<div id="vista">
-<div class="overlay">
+    </div>
+</section>
 
-<button class="volver" onclick="volver()">Volver</button>
+<!-- =====================
+     DETALLE LUGAR
+===================== -->
+<section id="detalleLugar" class="detalle-lugar">
 
-<div class="topbar">
-<div class="tab active" id="tabMapa" onclick="mostrarMapa()">📍 Ubicación</div>
-<div class="tab" id="tabInfo" onclick="mostrarInfo()">ℹ Información</div>
-</div>
+    <button class="btn-volver" onclick="cerrarLugar()">← Volver</button>
 
-<div class="content">
-<iframe id="contenido"></iframe>
-</div>
+    <div class="detalle-container">
 
-</div>
-</div>
+        <div class="panel mapa-panel">
+            <iframe id="mapaFrame" src=""></iframe>
+        </div>
+
+        <div class="panel info-panel">
+            <h2 id="tituloLugar">Nombre del Lugar</h2>
+            <p id="descripcionLugar"></p>
+
+            <div class="info-box">
+                <h4>Horario</h4>
+                <p>09:00 - 18:00</p>
+            </div>
+
+            <div class="info-box">
+                <h4>Contacto</h4>
+                <p>099 999 9999</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 <script>
-const intro=document.getElementById("intro");
-const mapa=document.getElementById("mapa");
-const vista=document.getElementById("vista");
-const contenido=document.getElementById("contenido");
-const tabMapa=document.getElementById("tabMapa");
-const tabInfo=document.getElementById("tabInfo");
 
-let mapaURL="";
-let infoURL="";
-let bgImage="";
-
-intro.onclick=()=>{
-intro.style.display="none";
-mapa.style.display="block";
+/* ENTRAR AL MAPA */
+function entrarMapa(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("mapaPrincipal").style.display="block";
 }
 
-function abrirLugar(nombre,map,info,img){
-mapaURL=map;
-infoURL=info;
-bgImage=img;
+/* ABRIR LUGAR */
+function abrirLugar(nombre, descripcion, lat, lng){
 
-vista.style.backgroundImage="url('"+bgImage+"')";
-mapa.style.display="none";
-vista.style.display="flex";
+    document.getElementById("detalleLugar").style.display="block";
 
-mostrarMapa();
+    document.getElementById("tituloLugar").innerText=nombre;
+    document.getElementById("descripcionLugar").innerText=descripcion;
+
+    const mapaURL=`https://www.google.com/maps?q=${lat},${lng}&output=embed`;
+    document.getElementById("mapaFrame").src=mapaURL;
 }
 
-function mostrarMapa(){
-contenido.src=mapaURL;
-tabMapa.classList.add("active");
-tabInfo.classList.remove("active");
+/* CERRAR */
+function cerrarLugar(){
+    document.getElementById("detalleLugar").style.display="none";
 }
 
-function mostrarInfo(){
-contenido.src=infoURL;
-tabInfo.classList.add("active");
-tabMapa.classList.remove("active");
-}
-
-function volver(){
-vista.style.display="none";
-mapa.style.display="block";
-}
 </script>
 
 </body>
