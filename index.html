@@ -3,209 +3,295 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pomasqui Project</title>
+<title>Calacalí Experience</title>
 
 <style>
-
-/* ====== ESTILO GENERAL ====== */
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-    overflow: hidden;
-    background: #0f0f0f;
-    color: white;
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#0f0f0f;
+color:white;
+overflow:hidden;
 }
 
-/* ====== INTRO ====== */
-#intro {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    z-index: 100;
-    cursor: pointer;
+/* INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+z-index:100;
+}
+#intro h1{
+font-size:8vw;
+letter-spacing:10px;
+animation:fade 2s ease;
+}
+@keyframes fade{
+from{opacity:0;transform:scale(0.7);}
+to{opacity:1;transform:scale(1);}
 }
 
-#intro h1 {
-    font-size: 8vw;
-    letter-spacing: 10px;
-    animation: fadeIn 2s ease-in-out;
+/* MAPA */
+#mapa{
+display:none;
+width:100%;
+height:100vh;
+background:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Calacali_MitadDelMundo.JPG') center/cover no-repeat;
+overflow:auto;
+padding:40px;
+box-sizing:border-box;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8);}
-    to { opacity: 1; transform: scale(1);}
+.categoria{
+margin-bottom:40px;
 }
 
-/* ====== MAPA ====== */
-#mapa {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: none;
-    background: url('https://i.imgur.com/3ZQ3Z4B.jpeg') center/cover no-repeat;
+.categoria h2{
+border-left:5px solid crimson;
+padding-left:10px;
 }
 
-/* Puntos interactivos */
-.lugar {
-    position: absolute;
-    width: 180px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.3s;
+.lugares{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
-.lugar:hover {
-    transform: scale(1.05);
+.card{
+background:#1a1a1a;
+border-radius:10px;
+overflow:hidden;
+cursor:pointer;
+transition:0.3s;
+}
+.card:hover{
+transform:scale(1.05);
 }
 
-.lugar img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    background: white;
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
 }
 
-.lugar h3 {
-    text-align: center;
-    padding: 10px;
-    margin: 0;
+.card h3{
+margin:10px;
 }
 
-/* Posiciones ejemplo */
-#turismo { top: 30%; left: 20%; }
-#comida { top: 50%; left: 50%; }
-#artesanias { top: 40%; left: 75%; }
-
-/* ====== VISTA LUGAR ====== */
-#vistaLugar {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #111;
-    display: none;
-    flex-direction: row;
-    animation: zoomIn 0.7s ease forwards;
+/* VISTA */
+#vista{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:#111;
+display:none;
+flex-direction:row;
+animation:zoom 0.5s ease;
+}
+@keyframes zoom{
+from{opacity:0;transform:scale(0.8);}
+to{opacity:1;transform:scale(1);}
+}
+.col{
+flex:1;
+padding:20px;
+overflow:auto;
+}
+iframe{
+width:100%;
+height:60%;
+border-radius:10px;
+}
+button{
+margin-top:20px;
+padding:10px 20px;
+background:crimson;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+a{
+color:#00d4ff;
+display:block;
+margin-top:10px;
 }
 
-@keyframes zoomIn {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.columna {
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
-
-iframe {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
-
-.placeholder {
-    background: white;
-    color: black;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    background: crimson;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* ====== RESPONSIVE ====== */
 @media(max-width:768px){
-    #vistaLugar{
-        flex-direction: column;
-    }
-    .lugar{
-        width: 140px;
-    }
+#vista{
+flex-direction:column;
 }
-
+iframe{
+height:300px;
+}
+}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
 <div id="intro">
-    <h1>POMASQUI</h1>
+<h1>CALACALÍ</h1>
 </div>
 
-<!-- MAPA -->
 <div id="mapa">
 
-    <div class="lugar" id="turismo" onclick="abrirLugar('Turismo')">
-        <img src="https://via.placeholder.com/300x200/ffffff/000000?text=Imagen+Turistico+1">
-        <h3>Turismo</h3>
-    </div>
+<div class="categoria">
+<h2>🌄 Turismo</h2>
+<div class="lugares">
 
-    <div class="lugar" id="comida" onclick="abrirLugar('Comida')">
-        <img src="https://via.placeholder.com/300x200/ffffff/000000?text=Imagen+Comida+1">
-        <h3>Comida</h3>
-    </div>
+<div class="card" onclick="abrirLugar(
+'Museo Casa Carlota Jaramillo',
+'https://maps.google.com/?q=Museo+Casa+Carlota+Jaramillo+Calacalí',
+'https://www.facebook.com/CasaCarlotaJaramillo/',
+'Museo dedicado a la Reina del Pasillo, con objetos históricos y recuerdos culturales.'
+)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Exterior_Casa_Museo_Carlota_Jaramillo.jpg">
+<h3>Museo Casa Carlota Jaramillo</h3>
+</div>
 
-    <div class="lugar" id="artesanias" onclick="abrirLugar('Artesanias')">
-        <img src="https://via.placeholder.com/300x200/ffffff/000000?text=Imagen+Artesanias+1">
-        <h3>Artesanías</h3>
-    </div>
+<div class="card" onclick="abrirLugar(
+'Parque Central de Calacalí',
+'https://maps.google.com/?q=Parque+Central+de+Calacalí',
+'https://www.instagram.com/explore/locations/109867507469575/parque-central-de-calacali/',
+'Centro histórico con arquitectura tradicional y vida cultural.'
+)">
+<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/fc/b5/ff/caption.jpg">
+<h3>Parque Central de Calacalí</h3>
+</div>
+
+<div class="card" onclick="abrirLugar(
+'Monumento Mitad del Mundo Calacalí',
+'https://maps.google.com/?q=Monumento+Mitad+del+Mundo+Calacalí',
+'https://www.instagram.com/explore/locations/236311290/monumento-a-la-mitad-del-mundo-calacalí/',
+'Monumento histórico que marca la línea ecuatorial original.'
+)">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Mitad_del_Mundo%2C_Quito%2C_Ecuador%2C_2015-07-22%2C_DD_15.JPG">
+<h3>Monumento Mitad del Mundo</h3>
+</div>
+
+</div>
+</div>
+
+<div class="categoria">
+<h2>🧶 Artesanías</h2>
+<div class="lugares">
+
+<div class="card" onclick="abrirLugar(
+'Tejidos Kaori',
+'https://maps.google.com/?q=Tejidos+Kaori.L_oficial+Calacalí',
+'https://www.instagram.com/tejidos_kaori',
+'Tienda artesanal con tejidos y productos hechos a mano.'
+)">
+<img src="https://alpacaoficial.com/cdn/shop/files/chalesnuevoscolores-3_1080x.jpg">
+<h3>Tejidos Kaori</h3>
+</div>
+
+<div class="card" onclick="abrirLugar(
+'Tienda Comunitaria del Chocó Andino',
+'https://maps.google.com/?q=Tienda+Comunitaria+del+Chocó+Andino+Calacalí',
+'https://www.facebook.com/JovenesdelChocoAndino',
+'Espacio comunitario de venta de artesanías y productos locales.'
+)">
+<img src="https://qpwebsite.s3.amazonaws.com/uploads/2024/10/rss-efeeec8d1ff9c19650a02810d796e70edd510ee7d58w-1200x800.jpg">
+<h3>Tienda Comunitaria</h3>
+</div>
+
+<div class="card" onclick="abrirLugar(
+'Artes Cañar',
+'https://goo.gl/maps/X5n66zyTvrZuFQCx5',
+'https://www.facebook.com/artes.canar.1/',
+'Taller artesanal con piezas en madera y cultura local.'
+)">
+<img src="https://static.wixstatic.com/media/b69e82_1d449a445a6848e28324845d155c9be9~mv2.jpg">
+<h3>Artes Cañar</h3>
+</div>
+
+</div>
+</div>
+
+<div class="categoria">
+<h2>🍽 Gastronomía</h2>
+<div class="lugares">
+
+<div class="card" onclick="abrirLugar(
+'El Patio',
+'https://maps.google.com/?q=El+Patio+Organic+Traditional+Food+Calacalí',
+'https://www.facebook.com/elpatioecorestaurante',
+'Cocina tradicional ecuatoriana con ingredientes locales.'
+)">
+<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/4b/7c/67/el-patio.jpg">
+<h3>El Patio</h3>
+</div>
+
+<div class="card" onclick="abrirLugar(
+'Mi Pueblo Restaurante',
+'https://maps.google.com/?q=Mi+Pueblo+Restaurante+Calacalí',
+'https://www.facebook.com/mipueblo.calacali/',
+'Restaurante típico ecuatoriano con ambiente familiar.'
+)">
+<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/e9/b7/52/mi-pueblo.jpg">
+<h3>Mi Pueblo</h3>
+</div>
+
+<div class="card" onclick="abrirLugar(
+'YES MI PEZ',
+'https://maps.google.com/?q=YES+MI+PEZ+tradición+y+sabor+Calacalí',
+'https://www.facebook.com/yesmipez',
+'Especialidad en pescado y sabores tradicionales.'
+)">
+<img src="https://tb-static.uber.com/prod/image-proc/processed_images/e9e46ef27678ce9eea7c3f6fb6828b02/783282f6131ef2258e5bcd87c46aa87e.webp">
+<h3>YES MI PEZ</h3>
+</div>
+
+</div>
+</div>
 
 </div>
 
-<!-- VISTA LUGAR -->
-<div id="vistaLugar">
-    <div class="columna">
-        <iframe src="https://www.google.com/maps?q=Pomasqui&output=embed"></iframe>
-    </div>
-    <div class="columna">
-        <div class="placeholder" id="tituloLugar">Información del lugar</div>
-        <p>Lorem ipsum dolor sit amet, aquí irá la información real del lugar cuando la tengas.</p>
-        <button onclick="volver()">Volver al mapa</button>
-    </div>
+<div id="vista">
+<div class="col">
+<iframe id="mapFrame"></iframe>
+</div>
+<div class="col">
+<h2 id="tituloLugar"></h2>
+<p id="descripcionLugar"></p>
+<a id="infoLink" target="_blank">Ver red social / información</a>
+<br>
+<button onclick="volver()">Volver</button>
+</div>
 </div>
 
 <script>
+const intro=document.getElementById("intro");
+const mapa=document.getElementById("mapa");
+const vista=document.getElementById("vista");
 
-const intro = document.getElementById("intro");
-const mapa = document.getElementById("mapa");
-const vista = document.getElementById("vistaLugar");
-const tituloLugar = document.getElementById("tituloLugar");
+intro.onclick=()=>{
+intro.style.display="none";
+mapa.style.display="block";
+}
 
-intro.addEventListener("click", () => {
-    intro.style.display = "none";
-    mapa.style.display = "block";
-});
-
-function abrirLugar(nombre){
-    mapa.style.display = "none";
-    vista.style.display = "flex";
-    tituloLugar.innerText = nombre;
+function abrirLugar(nombre,map,info,descripcion){
+mapa.style.display="none";
+vista.style.display="flex";
+document.getElementById("tituloLugar").innerText=nombre;
+document.getElementById("descripcionLugar").innerText=descripcion;
+document.getElementById("mapFrame").src=map+"&output=embed";
+document.getElementById("infoLink").href=info;
 }
 
 function volver(){
-    vista.style.display = "none";
-    mapa.style.display = "block";
+vista.style.display="none";
+mapa.style.display="block";
 }
-
 </script>
 
 </body>
