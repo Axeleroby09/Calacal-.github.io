@@ -7,7 +7,6 @@
 
 <style>
 
-/* ===== RESET ===== */
 *{
 margin:0;
 padding:0;
@@ -21,7 +20,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ===== INTRO ===== */
+/* INTRO */
 #intro{
 position:fixed;
 width:100%;
@@ -37,7 +36,7 @@ cursor:pointer;
 #intro h1{
 font-size:8vw;
 letter-spacing:10px;
-transition:0.5s;
+transition:0.4s;
 }
 
 #intro:hover h1{
@@ -45,21 +44,21 @@ transform:scale(1.1);
 color:#e50914;
 }
 
-/* ===== SECCIONES ===== */
+/* SECCION PRINCIPAL */
 #mapaPrincipal{
 display:none;
 padding:80px 5%;
-min-height:100vh;
 background:linear-gradient(135deg,#141e30,#243b55);
+min-height:100vh;
 }
 
 .categoria{
-margin-bottom:60px;
+margin-bottom:70px;
 }
 
 .categoria h2{
-margin-bottom:25px;
 font-size:28px;
+margin-bottom:25px;
 border-left:5px solid #e50914;
 padding-left:15px;
 }
@@ -83,23 +82,17 @@ box-shadow:0 10px 25px rgba(0,0,0,0.6);
 transform:translateY(-10px);
 }
 
-.lugar-img{
-background:white;
-height:180px;
-display:flex;
-justify-content:center;
-align-items:center;
-color:black;
-font-weight:bold;
-text-align:center;
-padding:10px;
+.lugar-img img{
+width:100%;
+height:200px;
+object-fit:cover;
 }
 
 .lugar-info{
 padding:20px;
 }
 
-/* ===== DETALLE ===== */
+/* DETALLE */
 .detalle-lugar{
 position:fixed;
 top:0;
@@ -155,13 +148,6 @@ color:#ccc;
 margin-bottom:20px;
 }
 
-.info-box{
-margin-top:10px;
-background:#1f1f1f;
-padding:15px;
-border-radius:10px;
-}
-
 .btn-social{
 margin-top:20px;
 background:#e50914;
@@ -178,7 +164,6 @@ transition:0.3s;
 background:#ff1f2e;
 }
 
-/* RESPONSIVE */
 @media(max-width:900px){
 .detalle-container{
 flex-direction:column;
@@ -198,72 +183,89 @@ height:400px;
 <h1>POMASQUI</h1>
 </div>
 
-<!-- MAPA PRINCIPAL -->
 <section id="mapaPrincipal">
 
-<!-- ===== TURISMO ===== -->
+<!-- TURISMO -->
 <div class="categoria">
 <h2>Turismo</h2>
 <div class="lugares-grid">
 
-<div class="lugar-card" onclick="abrirLugar('Museo Casa Carlota Jaramillo','Museo dedicado a la Reina del Pasillo.',-0.0022,-78.4300,'https://instagram.com')">
-<div class="lugar-img">Imagen Turística 1</div>
-<div class="lugar-info"><h3>Museo Casa Carlota</h3></div>
+<div class="lugar-card" onclick="abrirLugar('Museo Casa Carlota Jaramillo','Museo dedicado a la Reina del Pasillo.',-0.0022,-78.4300,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Casa_Carlota_Jaramillo.jpg">
+</div>
+<div class="lugar-info"><h3>Museo Casa Carlota Jaramillo</h3></div>
 </div>
 
-<div class="lugar-card" onclick="abrirLugar('Monumento Mitad del Mundo','Lugar emblemático del Ecuador.',-0.0021,-78.4558,'https://instagram.com')">
-<div class="lugar-img">Imagen Turística 2</div>
+<div class="lugar-card" onclick="abrirLugar('Monumento Mitad del Mundo','Lugar emblemático del Ecuador.',-0.0021,-78.4558,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Mitad_del_Mundo_Quito_Ecuador.jpg">
+</div>
 <div class="lugar-info"><h3>Mitad del Mundo</h3></div>
 </div>
 
-<div class="lugar-card" onclick="abrirLugar('Parque Central','Espacio recreativo local.',-0.0040,-78.4320,'https://instagram.com')">
-<div class="lugar-img">Imagen Turística 3</div>
+<div class="lugar-card" onclick="abrirLugar('Parque Central','Espacio recreativo local.',-0.0040,-78.4320,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/59/Parque_Quito.jpg">
+</div>
 <div class="lugar-info"><h3>Parque Central</h3></div>
 </div>
 
 </div>
 </div>
 
-<!-- ===== GASTRONOMÍA ===== -->
+<!-- GASTRONOMÍA -->
 <div class="categoria">
 <h2>Gastronomía</h2>
 <div class="lugares-grid">
 
-<div class="lugar-card" onclick="abrirLugar('Restaurante Ejemplo 1','Comida típica ecuatoriana.',-0.0102,-78.4230,'https://instagram.com')">
-<div class="lugar-img">Imagen Comida 1</div>
+<div class="lugar-card" onclick="abrirLugar('Restaurante Ejemplo','Comida típica ecuatoriana.',-0.0102,-78.4230,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Locro_de_papa.jpg">
+</div>
 <div class="lugar-info"><h3>Restaurante 1</h3></div>
 </div>
 
-<div class="lugar-card" onclick="abrirLugar('Restaurante Ejemplo 2','Especialidad en carnes.',-0.0110,-78.4250,'https://instagram.com')">
-<div class="lugar-img">Imagen Comida 2</div>
+<div class="lugar-card" onclick="abrirLugar('Asadero Ejemplo','Especialidad en carnes.',-0.0110,-78.4250,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Carne_asada.jpg">
+</div>
 <div class="lugar-info"><h3>Restaurante 2</h3></div>
 </div>
 
-<div class="lugar-card" onclick="abrirLugar('Cafetería Ejemplo','Café artesanal y postres.',-0.0120,-78.4260,'https://instagram.com')">
-<div class="lugar-img">Imagen Comida 3</div>
+<div class="lugar-card" onclick="abrirLugar('Cafetería Ejemplo','Café artesanal y postres.',-0.0120,-78.4260,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Coffee.jpg">
+</div>
 <div class="lugar-info"><h3>Cafetería</h3></div>
 </div>
 
 </div>
 </div>
 
-<!-- ===== ARTESANÍAS ===== -->
+<!-- ARTESANÍAS -->
 <div class="categoria">
 <h2>Artesanías</h2>
 <div class="lugares-grid">
 
-<div class="lugar-card" onclick="abrirLugar('Artesanía 1','Productos hechos a mano.',-0.0150,-78.4350,'https://instagram.com')">
-<div class="lugar-img">Imagen Artesanía 1</div>
+<div class="lugar-card" onclick="abrirLugar('Artesanía 1','Productos hechos a mano.',-0.0150,-78.4350,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Artesania.jpg">
+</div>
 <div class="lugar-info"><h3>Artesanía 1</h3></div>
 </div>
 
-<div class="lugar-card" onclick="abrirLugar('Artesanía 2','Recuerdos y cultura local.',-0.0160,-78.4360,'https://instagram.com')">
-<div class="lugar-img">Imagen Artesanía 2</div>
+<div class="lugar-card" onclick="abrirLugar('Artesanía 2','Recuerdos y cultura local.',-0.0160,-78.4360,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Handicraft.jpg">
+</div>
 <div class="lugar-info"><h3>Artesanía 2</h3></div>
 </div>
 
-<div class="lugar-card" onclick="abrirLugar('Artesanía 3','Productos culturales.',-0.0170,-78.4370,'https://instagram.com')">
-<div class="lugar-img">Imagen Artesanía 3</div>
+<div class="lugar-card" onclick="abrirLugar('Artesanía 3','Productos culturales.',-0.0170,-78.4370,'https://www.instagram.com')">
+<div class="lugar-img">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Handmade.jpg">
+</div>
 <div class="lugar-info"><h3>Artesanía 3</h3></div>
 </div>
 
@@ -272,7 +274,6 @@ height:400px;
 
 </section>
 
-<!-- DETALLE -->
 <section id="detalleLugar" class="detalle-lugar">
 
 <button class="btn-volver" onclick="cerrarLugar()">← Volver</button>
@@ -286,16 +287,9 @@ height:400px;
 <div class="panel info-panel">
 <h2 id="tituloLugar"></h2>
 <p id="descripcionLugar"></p>
-
-<div class="info-box">
-<h4>Ubicación en tiempo real</h4>
-<p>Visualización directa desde Google Maps</p>
-</div>
-
 <a id="socialLink" href="#" target="_blank" class="btn-social">
 Visitar Instagram / Sitio Web
 </a>
-
 </div>
 
 </div>
@@ -310,15 +304,10 @@ document.getElementById("mapaPrincipal").style.display="block";
 }
 
 function abrirLugar(nombre, descripcion, lat, lng, link){
-
 document.getElementById("detalleLugar").style.display="block";
-
 document.getElementById("tituloLugar").innerText=nombre;
 document.getElementById("descripcionLugar").innerText=descripcion;
-
-const mapaURL=`https://www.google.com/maps?q=${lat},${lng}&output=embed`;
-document.getElementById("mapaFrame").src=mapaURL;
-
+document.getElementById("mapaFrame").src=`https://www.google.com/maps?q=${lat},${lng}&output=embed`;
 document.getElementById("socialLink").href=link;
 }
 
