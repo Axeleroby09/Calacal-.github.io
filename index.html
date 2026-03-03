@@ -50,11 +50,52 @@ body{
 }
 
 /* =====================
-   MAPA PRINCIPAL
+   MAPA PRINCIPAL PRO
 ===================== */
+
 #mapaPrincipal{
     display:none;
-    padding:60px 5%;
+    padding:80px 5%;
+    min-height:100vh;
+    background:linear-gradient(135deg,#141e30,#243b55);
+}
+
+#mapaPrincipal h2{
+    margin-bottom:40px;
+    font-size:32px;
+    text-align:center;
+}
+
+.lugares-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.lugar-card{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+    transition:all 0.4s ease;
+    padding:25px;
+}
+
+.lugar-card:hover{
+    transform:translateY(-10px) scale(1.02);
+    background:rgba(255,255,255,0.1);
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+}
+
+.lugar-card h3{
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.lugar-card p{
+    color:#ccc;
 }
 
 #mapaPrincipal h2{
