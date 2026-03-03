@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calacalí Experience</title>
+<title>Calacalí Experience PRO</title>
 
 <style>
 body{
@@ -32,55 +32,31 @@ letter-spacing:10px;
 animation:fade 2s ease;
 }
 @keyframes fade{
-from{opacity:0;transform:scale(0.7);}
+from{opacity:0;transform:scale(0.8);}
 to{opacity:1;transform:scale(1);}
 }
 
 /* MAPA */
 #mapa{
 display:none;
-width:100%;
 height:100vh;
-background:url('https://upload.wikimedia.org/wikipedia/commons/3/32/Calacali_MitadDelMundo.JPG') center/cover no-repeat;
 overflow:auto;
 padding:40px;
 box-sizing:border-box;
-}
-
-.categoria{
-margin-bottom:40px;
-}
-
-.categoria h2{
-border-left:5px solid crimson;
-padding-left:10px;
-}
-
-.lugares{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+background:#111;
 }
 
 .card{
-background:#1a1a1a;
+background:#1c1c1c;
+padding:20px;
+margin:15px 0;
 border-radius:10px;
-overflow:hidden;
 cursor:pointer;
 transition:0.3s;
 }
 .card:hover{
-transform:scale(1.05);
-}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-.card h3{
-margin:10px;
+background:#2a2a2a;
+transform:scale(1.02);
 }
 
 /* VISTA */
@@ -90,46 +66,56 @@ top:0;
 left:0;
 width:100%;
 height:100vh;
-background:#111;
+background:#000;
 display:none;
-flex-direction:row;
-animation:zoom 0.5s ease;
+flex-direction:column;
 }
-@keyframes zoom{
-from{opacity:0;transform:scale(0.8);}
-to{opacity:1;transform:scale(1);}
+
+.topbar{
+display:flex;
+background:#111;
+padding:10px;
+gap:10px;
 }
-.col{
+
+.tab{
+padding:10px 20px;
+background:#222;
+cursor:pointer;
+border-radius:5px;
+transition:0.3s;
+}
+
+.tab.active{
+background:crimson;
+}
+
+#panel{
 flex:1;
-padding:20px;
-overflow:auto;
+position:relative;
 }
+
 iframe{
 width:100%;
-height:60%;
-border-radius:10px;
-}
-button{
-margin-top:20px;
-padding:10px 20px;
-background:crimson;
-color:white;
+height:100%;
 border:none;
-border-radius:5px;
-cursor:pointer;
 }
-a{
-color:#00d4ff;
-display:block;
-margin-top:10px;
+
+.volver{
+position:absolute;
+top:15px;
+right:20px;
+background:crimson;
+border:none;
+padding:8px 15px;
+cursor:pointer;
+border-radius:5px;
+z-index:10;
 }
 
 @media(max-width:768px){
-#vista{
-flex-direction:column;
-}
-iframe{
-height:300px;
+#intro h1{
+font-size:12vw;
 }
 }
 </style>
@@ -143,149 +129,82 @@ height:300px;
 
 <div id="mapa">
 
-<div class="categoria">
-<h2>🌄 Turismo</h2>
-<div class="lugares">
+<h2>Selecciona un lugar</h2>
 
 <div class="card" onclick="abrirLugar(
 'Museo Casa Carlota Jaramillo',
-'https://maps.google.com/?q=Museo+Casa+Carlota+Jaramillo+Calacalí',
-'https://www.facebook.com/CasaCarlotaJaramillo/',
-'Museo dedicado a la Reina del Pasillo, con objetos históricos y recuerdos culturales.'
+'https://maps.google.com/?q=Museo+Casa+Carlota+Jaramillo+Calacalí&output=embed',
+'https://www.facebook.com/CasaCarlotaJaramillo/'
 )">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Exterior_Casa_Museo_Carlota_Jaramillo.jpg">
-<h3>Museo Casa Carlota Jaramillo</h3>
+Museo Casa Carlota Jaramillo
 </div>
 
 <div class="card" onclick="abrirLugar(
-'Parque Central de Calacalí',
-'https://maps.google.com/?q=Parque+Central+de+Calacalí',
-'https://www.instagram.com/explore/locations/109867507469575/parque-central-de-calacali/',
-'Centro histórico con arquitectura tradicional y vida cultural.'
+'Monumento Mitad del Mundo',
+'https://maps.google.com/?q=Monumento+Mitad+del+Mundo+Calacalí&output=embed',
+'https://www.instagram.com/explore/locations/236311290/monumento-a-la-mitad-del-mundo-calacalí/'
 )">
-<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/fc/b5/ff/caption.jpg">
-<h3>Parque Central de Calacalí</h3>
+Monumento Mitad del Mundo
 </div>
-
-<div class="card" onclick="abrirLugar(
-'Monumento Mitad del Mundo Calacalí',
-'https://maps.google.com/?q=Monumento+Mitad+del+Mundo+Calacalí',
-'https://www.instagram.com/explore/locations/236311290/monumento-a-la-mitad-del-mundo-calacalí/',
-'Monumento histórico que marca la línea ecuatorial original.'
-)">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Mitad_del_Mundo%2C_Quito%2C_Ecuador%2C_2015-07-22%2C_DD_15.JPG">
-<h3>Monumento Mitad del Mundo</h3>
-</div>
-
-</div>
-</div>
-
-<div class="categoria">
-<h2>🧶 Artesanías</h2>
-<div class="lugares">
-
-<div class="card" onclick="abrirLugar(
-'Tejidos Kaori',
-'https://maps.google.com/?q=Tejidos+Kaori.L_oficial+Calacalí',
-'https://www.instagram.com/tejidos_kaori',
-'Tienda artesanal con tejidos y productos hechos a mano.'
-)">
-<img src="https://alpacaoficial.com/cdn/shop/files/chalesnuevoscolores-3_1080x.jpg">
-<h3>Tejidos Kaori</h3>
-</div>
-
-<div class="card" onclick="abrirLugar(
-'Tienda Comunitaria del Chocó Andino',
-'https://maps.google.com/?q=Tienda+Comunitaria+del+Chocó+Andino+Calacalí',
-'https://www.facebook.com/JovenesdelChocoAndino',
-'Espacio comunitario de venta de artesanías y productos locales.'
-)">
-<img src="https://qpwebsite.s3.amazonaws.com/uploads/2024/10/rss-efeeec8d1ff9c19650a02810d796e70edd510ee7d58w-1200x800.jpg">
-<h3>Tienda Comunitaria</h3>
-</div>
-
-<div class="card" onclick="abrirLugar(
-'Artes Cañar',
-'https://goo.gl/maps/X5n66zyTvrZuFQCx5',
-'https://www.facebook.com/artes.canar.1/',
-'Taller artesanal con piezas en madera y cultura local.'
-)">
-<img src="https://static.wixstatic.com/media/b69e82_1d449a445a6848e28324845d155c9be9~mv2.jpg">
-<h3>Artes Cañar</h3>
-</div>
-
-</div>
-</div>
-
-<div class="categoria">
-<h2>🍽 Gastronomía</h2>
-<div class="lugares">
 
 <div class="card" onclick="abrirLugar(
 'El Patio',
-'https://maps.google.com/?q=El+Patio+Organic+Traditional+Food+Calacalí',
-'https://www.facebook.com/elpatioecorestaurante',
-'Cocina tradicional ecuatoriana con ingredientes locales.'
+'https://maps.google.com/?q=El+Patio+Organic+Traditional+Food+Calacalí&output=embed',
+'https://www.facebook.com/elpatioecorestaurante'
 )">
-<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/4b/7c/67/el-patio.jpg">
-<h3>El Patio</h3>
-</div>
-
-<div class="card" onclick="abrirLugar(
-'Mi Pueblo Restaurante',
-'https://maps.google.com/?q=Mi+Pueblo+Restaurante+Calacalí',
-'https://www.facebook.com/mipueblo.calacali/',
-'Restaurante típico ecuatoriano con ambiente familiar.'
-)">
-<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/e9/b7/52/mi-pueblo.jpg">
-<h3>Mi Pueblo</h3>
-</div>
-
-<div class="card" onclick="abrirLugar(
-'YES MI PEZ',
-'https://maps.google.com/?q=YES+MI+PEZ+tradición+y+sabor+Calacalí',
-'https://www.facebook.com/yesmipez',
-'Especialidad en pescado y sabores tradicionales.'
-)">
-<img src="https://tb-static.uber.com/prod/image-proc/processed_images/e9e46ef27678ce9eea7c3f6fb6828b02/783282f6131ef2258e5bcd87c46aa87e.webp">
-<h3>YES MI PEZ</h3>
-</div>
-
-</div>
+El Patio Restaurante
 </div>
 
 </div>
 
 <div id="vista">
-<div class="col">
-<iframe id="mapFrame"></iframe>
+
+<div class="topbar">
+<div class="tab active" id="tabMapa" onclick="mostrarMapa()">Ubicación</div>
+<div class="tab" id="tabInfo" onclick="mostrarInfo()">Información</div>
 </div>
-<div class="col">
-<h2 id="tituloLugar"></h2>
-<p id="descripcionLugar"></p>
-<a id="infoLink" target="_blank">Ver red social / información</a>
-<br>
-<button onclick="volver()">Volver</button>
+
+<div id="panel">
+<button class="volver" onclick="volver()">Volver</button>
+<iframe id="contenido"></iframe>
 </div>
+
 </div>
 
 <script>
 const intro=document.getElementById("intro");
 const mapa=document.getElementById("mapa");
 const vista=document.getElementById("vista");
+const contenido=document.getElementById("contenido");
+const tabMapa=document.getElementById("tabMapa");
+const tabInfo=document.getElementById("tabInfo");
+
+let mapaURL="";
+let infoURL="";
 
 intro.onclick=()=>{
 intro.style.display="none";
 mapa.style.display="block";
 }
 
-function abrirLugar(nombre,map,info,descripcion){
+function abrirLugar(nombre,mapURL,infoURLparam){
+mapaURL=mapURL;
+infoURL=infoURLparam;
 mapa.style.display="none";
 vista.style.display="flex";
-document.getElementById("tituloLugar").innerText=nombre;
-document.getElementById("descripcionLugar").innerText=descripcion;
-document.getElementById("mapFrame").src=map+"&output=embed";
-document.getElementById("infoLink").href=info;
+mostrarMapa();
+}
+
+function mostrarMapa(){
+contenido.src=mapaURL;
+tabMapa.classList.add("active");
+tabInfo.classList.remove("active");
+}
+
+function mostrarInfo(){
+contenido.src=infoURL;
+tabInfo.classList.add("active");
+tabMapa.classList.remove("active");
 }
 
 function volver(){
